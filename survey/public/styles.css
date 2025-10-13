@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url("https://cdn.freecodecamp.org/testable-projects-fcc/images/survey-form-background.jpeg") center/cover fixed no-repeat;
+  margin: 0;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+h1,
+p {
+  color: #fff;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+form {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+button {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #222;
+}
+/* Στυλ για τη λίστα των surveys */
+#survey-list {
+  margin-top: 30px;
+}
+
+.survey-item {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.survey-item h3 {
+  margin: 0 0 10px;
+  color: #ffffff;
+}
+
+.survey-item p {
+  margin: 0 0 10px;
+  font-style: italic;
+  color: #fafafa;
+}
+
+.survey-item ul {
+  list-style: disc inside;
+  padding-left: 0;
+}
+
+.survey-item li {
+  margin-bottom: 5px;
+}

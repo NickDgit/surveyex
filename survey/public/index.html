@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PAOK Survey Form</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <h1 id="title">PAOK Survey Form</h1>
+  <p id="description">Please fill out this form with the required information</p>
+
+<form id="survey-form">
+    <fieldset>
+      <label for="name" id="name-label">First Name:
+        <input id="name" type="text" required placeholder="Enter your first name" />
+      </label>
+
+      <label for="email" id="email-label">Email:
+        <input id="email" type="email" required placeholder="Enter your email" />
+      </label>
+
+      <label for="number" id="number-label">Age:
+        <input id="number" type="number" min="10" max="100" required placeholder="Enter your age" />
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <label for="dropdown">Favourite Attacker:
+        <select id="dropdown" required>
+          <option value="">Select one</option>
+          <option value="taison">Taison Barcellos Freda</option>
+          <option value="ntelias">Giannis Konstantelias</option>
+          <option value="despo">Kiril Despodov</option>
+          <option value="zifko">Andrija Zivkovic</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Have you ever visited Toumba Stadium?</legend>
+      <label><input type="radio" name="visit" value="yes" required> Yes</label>
+      <label><input type="radio" name="visit" value="no"> No</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>What would you like to see your team win?</legend>
+      <label><input type="checkbox" name="trophy" value="superleague"> Super League</label>
+      <label><input type="checkbox" name="trophy" value="greekcup"> Greek Cup</label>
+       <label><input type="checkbox" name="trophy" value="greekcup"> Europa League</label>
+    </fieldset>
+
+    <fieldset>
+      <label for="bio">Your message to PAOK:
+        <textarea id="bio" name="bio" rows="4" placeholder="Write your thoughts here..."></textarea>
+      </label>
+    </fieldset>
+
+    <button id="submit" type="submit">Submit</button>
+  </form>
+  <!-- Εδώ εμφανίζονται όλα τα surveys -->
+<h2>Existing Surveys</h2>
+<div id="survey-list"></div>
+</body>
+
+</html>
