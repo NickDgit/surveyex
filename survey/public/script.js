@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("survey-form");
   const surveyList = document.getElementById("survey-list");
 
-  // Συνάρτηση για φόρτωση και εμφάνιση των surveys
+  //Function to load and display surveys 
   function loadSurveys() {
     fetch("/api/surveys")
       .then(res => res.json())
@@ -24,24 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(err => console.error("Σφάλμα φόρτωσης surveys:", err));
   }
 
-  // Φόρτωση surveys μόλις φορτώσει η σελίδα
+  
   loadSurveys();
 
-  // Υποβολή φόρμας
+  // submit
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const title = document.getElementById("name").value;
     const description = document.getElementById("bio").value;
 
-    // Επεξεργασία dropdown
+    //dropdown
     const dropdown = document.getElementById("dropdown");
     const favouriteAttacker = Array.from(dropdown.selectedOptions).map(o => o.text);
 
-    // Επεξεργασία radio buttons
+    //radio buttons
     const visit = Array.from(document.querySelectorAll('input[name="visit"]:checked')).map(i => i.value);
 
-    // Επεξεργασία checkboxes
+    //checkboxes
     const trophies = Array.from(document.querySelectorAll('input[name="trophy"]:checked')).map(i => i.value);
 
     const formData = {
@@ -71,3 +71,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
