@@ -32,16 +32,19 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+     if (!currentSurveyId) {
+      alert("Επέλεξε πρώτα ένα survey πατώντας το κουμπί 'Απάντησε'!");
+      return;
+    }
+
     const title = document.getElementById("name").value;
     const description = document.getElementById("bio").value;
 
     //dropdown
     const dropdown = document.getElementById("dropdown");
     const favouriteAttacker = Array.from(dropdown.selectedOptions).map(o => o.text);
-
     //radio buttons
     const visit = Array.from(document.querySelectorAll('input[name="visit"]:checked')).map(i => i.value);
-
     //checkboxes
     const trophies = Array.from(document.querySelectorAll('input[name="trophy"]:checked')).map(i => i.value);
 
