@@ -2,15 +2,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("survey-form");
   const surveyList = document.getElementById("survey-list");
 
+  let currentSurveyId = null; // Tracks the currently selected survey
+
   //Function to load and display surveys 
   function loadSurveys() {
     fetch("/api/surveys")
       .then(res => res.json())
       .then(surveys => {
         surveyList.innerHTML = "";
+
+        // temporary survey test, if no survey in the database 
+        if (surveys.length === 0) {
+          surveys = [
+            {
+              _id: "test_survey_1",
+              title: "Δοκιμαστικό Survey",
+              description: "Αυτό είναι ένα προσωρινό survey για να δοκιμάσουμε",
+              questions: [
+                { questionText: "Favourite Attacker", options: ["Taison", "Konstantelias", "Despodov"] },
+                { questionText: "Visited Toumba", options: ["Yes", "No"] },
+                { questionText: "Trophies", options: ["Super League", "Greek Cup", "Europa League"] }
+              ]
+            }
+          ];
+        }
+
         surveys.forEach(survey => {
           const div = document.createElement("div");
           div.classList.add("survey-item");
+
           div.innerHTML = `
             <h3>${survey.title}</h3>
             <p>${survey.description}</p>
@@ -19,7 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
             </ul>
             <button class="answer-btn" data-id="${survey._id}">Απάντησε</button>
           `;
+
           surveyList.appendChild(div);
+        });
+
+        //event listener for every "answer" btn
+        const buttons = document.querySelectorAll(".answer-btn");
+        buttons.forEach(btn => {
+          btn.addEventListener("click", () => {
+            currentSurveyId = btn.dataset.id; // survey selection
+            alert("Τώρα οι απαντήσεις θα σταλούν σε αυτό το survey!");
+          });
         });
       })
       .catch(err => console.error("Σφάλμα φόρτωσης surveys:", err));
@@ -32,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-     if (!currentSurveyId) {
+    if (!currentSurveyId) {
       alert("Επέλεξε πρώτα ένα survey πατώντας το κουμπί 'Απάντησε'!");
       return;
     }
@@ -40,12 +70,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("name").value;
     const description = document.getElementById("bio").value;
 
-    //dropdown
     const dropdown = document.getElementById("dropdown");
     const favouriteAttacker = Array.from(dropdown.selectedOptions).map(o => o.text);
-    //radio buttons
+
     const visit = Array.from(document.querySelectorAll('input[name="visit"]:checked')).map(i => i.value);
-    //checkboxes
+
     const trophies = Array.from(document.querySelectorAll('input[name="trophy"]:checked')).map(i => i.value);
 
     // Create answers object from form inputs
@@ -62,32 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log("Responses saved:", data); 
+        console.log("Responses saved:", data);
         alert("Απαντήσεις υποβλήθηκαν επιτυχώς!");
-        form.reset();                  
-        currentSurveyId = null;        
-        loadSurveys();                 
-      })
-
-    const formData = {
-      title,
-      description,
-      questions: [
-        { questionText: "Favourite Attacker", options: favouriteAttacker, answers: [] },
-        { questionText: "Visited Toumba", options: visit, answers: [] },
-        { questionText: "Trophies", options: trophies, answers: [] }
-      ]
-    };
-
-    fetch("/api/surveys", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    })
-      .then(res => res.json())
-      .then(data => {
-        alert("Survey υποβλήθηκε επιτυχώς!");
         form.reset();
+        currentSurveyId = null;
         loadSurveys();
       })
       .catch(err => {
@@ -96,4 +103,3 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
