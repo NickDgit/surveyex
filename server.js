@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGO_URI, {
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error(err));
 
-// Routes (θα τα δημιουργήσουμε μετά)
+// Connect survey routes
 app.use('/api/surveys', require('./survey/routes/surveys'));
 
 
