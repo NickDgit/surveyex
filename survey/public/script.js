@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
     //checkboxes
     const trophies = Array.from(document.querySelectorAll('input[name="trophy"]:checked')).map(i => i.value);
 
+    // Create answers object from form inputs
+    const answers = [
+      { questionText: "Favourite Attacker", answer: favouriteAttacker.join(", ") },
+      { questionText: "Visited Toumba", answer: visit.join(", ") },
+      { questionText: "Trophies", answer: trophies.join(", ") }
+    ];
+    
     const formData = {
       title,
       description,
