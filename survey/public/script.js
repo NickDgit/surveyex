@@ -55,6 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
       { questionText: "Trophies", answer: trophies.join(", ") }
     ];
     
+    fetch(`/api/surveys/${currentSurveyId}/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ answers })
+    })
     const formData = {
       title,
       description,
