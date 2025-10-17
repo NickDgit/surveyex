@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <ul>
               ${survey.questions.map(q => `<li><strong>${q.questionText}:</strong> ${q.options.join(", ")}</li>`).join("")}
             </ul>
+            <button class="answer-btn" data-id="${survey._id}">Απάντησε</button>
           `;
           surveyList.appendChild(div);
         });
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(err => console.error("Σφάλμα φόρτωσης surveys:", err));
   }
 
-  
+
   loadSurveys();
 
   // submit
