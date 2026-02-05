@@ -20,7 +20,7 @@
 1. Κλωνοποίηση του repository:
 
 ```bash
-git clone https://github.com/username/surveyex.git
+git clone https://github.com/NickDgit/surveyex.git
 cd surveyex
 ```
 2. Εγκατάσταση dependencies:
@@ -82,3 +82,4 @@ surveyex-master/
 ## 📜 License
 
 MIT License © 2025
+
